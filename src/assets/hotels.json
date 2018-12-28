@@ -1,0 +1,86 @@
+ [
+            {
+                "id": "380923",
+                "nom": "Vincci Flora",
+                "lieu": "Hammamet",
+                "note": 8.2,
+				"prix": 70
+            },
+			{
+                "id": "380924",
+                "nom": "Hotel Nesrine",
+                "lieu": "Hammamet",
+                "note": 8.2,
+				"prix": 115
+            },
+			{
+                "id": "380925",
+                "nom": "Hotel Bel Azur",
+                "lieu": "Hammamet",
+                "note": 8.9,
+				"prix": 150
+            },
+			{
+                "id": "380926",
+                "nom": "Hotel Belvedere Fourati",
+                "lieu": "Tunis",
+                "note": 6.2,
+				"prix": 160
+            },
+			{
+                "id": "380927",
+                "nom": "Business Hotel",
+                "lieu": "Tunis",
+                "note": 8.2,
+				"prix": 100
+            },
+			{
+                "id": "380928",
+                "nom": "Tour de TN",
+                "lieu": "Tunis",
+                "note": 2.0,
+				"prix": 100
+            },
+			{
+                "id": "380929",
+                "nom": "Dar kamy",
+                "lieu": "Nabeul",
+                "note": 1.2,
+				"prix": 112
+            },
+			{
+                "id": "380930",
+                "nom": "Royal Ludo",
+                "lieu": "Nabeul",
+                "note": 9.1,
+				"prix": 60
+            },
+			{
+                "id": "380955",
+                "nom": "Dar kamy",
+                "lieu": "Nabeul",
+                "note": 5.6,
+				"prix": 50
+            },
+			{
+                "id": "380953",
+                "nom": "Marina tabarka",
+                "lieu": "Tabarka",
+                "note": 7.3,
+				"prix": 90
+            },
+			{
+                "id": "380423",
+                "nom": "Hotel Mimo",
+                "lieu": "Tabarka",
+                "note": 3.5,
+				"prix": 115
+            },
+			{
+                "id": "381923",
+                "nom": "Abou Nawas",
+                "lieu": "Tabarka",
+                "note": 2.9,
+				"prix": 100
+            }
+]
