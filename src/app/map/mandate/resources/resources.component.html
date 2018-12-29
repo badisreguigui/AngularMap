@@ -267,83 +267,82 @@
                     </div>
                 </div>
                     <!--Page content-->
+                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
-                    <div class="row">
-                        <div class="col-lg-12">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">list of Resources Requests</h3>
-                            </div>
-                            <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-sm-9">
-                                                <div class="form-group">
-                                                    <input id="demo-foo-search" type="text" placeholder="What are you looking for?" class="form-control search-input" autocomplete="off">
-                                                </div>
-                                            </div>
-                                           <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <select id="demo-foo-filter-status" class="form-control search-input">
-                                                        <option value="">Show all</option>
-                                                        <option value="Treated">Treated</option>
-                                                        <option value="Non Treated">Non Treated</option>
-                                                      
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                <!-- Foo Table - Filtering -->
-                                <!--===================================================-->
-                                <table id="demo-foo-filtering" class="table table-bordered table-hover toggle-circle" data-page-size="7">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th >Date Start Mandate</th>
-                                            <th>Date End Mandate</th>
-                                            <th>Profile</th>
-                                            <th>Years of experience</th>
-                                            <th>Budget</th>
-                                            <th>Project</th>
-                                            <th>Status</th>
-                                           <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let request of listResourceRequest">
-										  
-                                            <td>{{request.title}}</td>
-                                            <td>{{request.mandateStartDate}}</td>
-                                            <td>{{request.mandateEndDate}}</td>
-                                            <td>{{request.searchedProfile}}</td>
-                                            <td>{{request.yearsOfExperience}}</td>
-                                            <td>{{request.budget}}</td>
-                                            <td>{{request.project.nom}}</td>
-                                            <td *ngIf="request.etat=='Treated'"><span class="label label-table label-success">{{request.etat}}</span></td>
-                                            <td *ngIf="request.etat=='Non Treated'"><span class="label label-table label-danger">{{request.etat}}</span></td>
-<td *ngIf="request.etat=='Non Treated'" >   <a class="nav-link active" href="http://localhost:4200/map/mandate/resources/{{request.searchedProfile}}/{{request.yearsOfExperience}}/{{request.requestId}}/{{request.mandateStartDate}}/{{request.mandateEndDate}}">Traiter</a>
- </td>
+                   
+                    <div class="column"  *ngFor="let resource of listResources">
+                        <div class="col-lg-3 col-sm-12 col-md-6 col-xs-12">
+                            <!--Profile Widget-->
+                            <!--===================================================-->
+                            <div class="panel widget">
+                                <div class="widget-header bg-purple">
+                                    <img class="widget-bg img-responsive" src="assets/dashboardPage//img/levio.PNG" alt="Image">
+                                </div>
+                                <div class="widget-body text-center">
+                                    <img alt="Profile Picture" class="widget-img img-border-light" src="assets/dashboardPage/img/{{resource.picture}}">
+                                    <h4 class="mar-no">{{resource.firstname}}</h4>
+                                    <p class="text-muted mar-btm">{{resource.profil}}</p>
+                                </div>
+                                <ul class="menu-items">
+                                    <li>
+                                        <a href="http://localhost:4200/map/mandate/viewMap/{{resource.ipAdress}}" class="clearfix" >
+                                            <i class="fa fa-user fa-lg"></i> View Position
+                                      
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="javascript:void(0)" class="clearfix" (click)="show = true">
+                                            <i class="fa fa-user fa-lg"></i> Show Vacations
+                                      
+                                        </a>
+                                    </li>
+                                  
+                                   
+                                
+                                <div *ngIf="show" >
+                                <div *ngFor="let vacation of resource.vacation">
+                                    <li >
+                                        <a href="javascript:void(0)" class="clearfix" (click)="show = true">
+                                         Date start vacation: {{vacation.dateDebut}}
+                                      </a>
                                         
-                                          </tr>
+                                    </li>
+                               
+                                    <li>
+                                        <a href="javascript:void(0)" class="clearfix" (click)="show = true">
+                                         Date End vacation: {{vacation.dateFin}}
+                                      </a>
                                         
-								
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="6">
-                                                <div class="text-right">
-                                                    <ul class="pagination"></ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                    </li>
+                                    <li *ngIf="VerifyDisponibility(vacation.dateDebut,vacation.dateFin)">  
+                                        <a href="javascript:void(0)" class="clearfix" (click)="show = true">
+
+                                       <button class="btn btn-info btn-lg" value="Disponible">
+                                      Disponible
+                                        </button>    
+                                        
+                                        <button class="btn btn-pink" (click)="AffecterMandat(resource.id)">
+                                            Affecter
+                                              </button></a>
+                                      </li>
+                                      <li *ngIf="!VerifyDisponibility(vacation.dateDebut,vacation.dateFin)">   <button class="btn btn-info btn-lg" value="Disponible">
+                                          Non Disponible
+                                            </button> 
+                                      </li>
+                                </div> 
+   
+                              </div>
+                                </ul>
                                 <!--===================================================-->
-                                <!-- End Foo Table - Filtering -->
                             </div>
                         </div>
+                        
                     </div>
+             
                 </div>
+         
                 <!--===================================================-->
                 <!--End page content-->
             </div>

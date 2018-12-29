@@ -6,6 +6,7 @@ import { AllMandatesComponent } from './all-mandates/all-mandates.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HistoriqueComponent } from './historique/historique.component';
 import { RequestsComponent } from './requests/requests.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { RequestsComponent } from './requests/requests.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [AllMandatesComponent, HistoriqueComponent, RequestsComponent]
+  declarations: [AllMandatesComponent, HistoriqueComponent, RequestsComponent, ResourcesComponent]
 })
 export class MandateModule { }
