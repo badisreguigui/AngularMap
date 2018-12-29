@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {HomeComponent} from '../home/home.component';
-import {DashboardComponent} from '../dashboard/dashboard.component';
+
+import { MapModule } from '../map/map.module';
 
 const routes: Routes = [
 
@@ -16,13 +17,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent}
     ]
   },
-  {
-    path: '',
-    component: DashboardComponent,
-    children: [
-      {path: 'dashboard', component: DashboardComponent},
-    ]
-  },
+  { path: 'map',  loadChildren: () => MapModule,},
 
   {path: '**', component: NotFoundComponent},
 

@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {LOCAL_STORAGE, WebStorageService, } from 'angular-webstorage-service';
+
 import {LoginService} from '../services/login.service';
 
 
@@ -23,14 +24,15 @@ export class HomeComponent implements OnInit {
     this.ls.logIn().subscribe(
 
       data => {
-        console.log(data.client.nom);
-        this.storage.set('currentuser',data.client.nom);
+        // console.log(data.client.nom);
+        // this.storage.set('currentuser',data.client.nom);
+        this.storage.set('currentuser',"user");
       }
     )
   }
 
 dashbord()
  {
-  this._router.navigate(['/dashboard']);
+  this._router.navigate(['/map']);
 }
 }

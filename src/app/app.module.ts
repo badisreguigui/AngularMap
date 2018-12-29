@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {RouteModuleRoutingModule} from './route-module/route-module-routing.module';
 import {NotFoundComponent} from './not-found/not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -18,7 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    DashboardComponent,
+
 
   ],
   imports: [
