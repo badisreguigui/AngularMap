@@ -18,17 +18,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit()
   {
+    this.storage.set('currentuser',"user");
+// /*    this.storage.set('TEST SESSION', 'SA MARCHE');
+//     console.log(this.storage.get('TEST SESSION'));*/
+//     this.ls.logIn().subscribe(
 
-/*    this.storage.set('TEST SESSION', 'SA MARCHE');
-    console.log(this.storage.get('TEST SESSION'));*/
-    this.ls.logIn().subscribe(
-
-      data => {
-        // console.log(data.client.nom);
-        // this.storage.set('currentuser',data.client.nom);
-        this.storage.set('currentuser',"user");
-      }
-    )
+//       data => {
+//         // console.log(data.client.nom);
+//         // this.storage.set('currentuser',data.client.nom);
+//         this.storage.set('currentuser',"user");
+//       }
+//     )
   }
 
 dashbord()
