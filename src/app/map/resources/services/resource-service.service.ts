@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SocialUser} from 'angular5-social-login';
+import {Resource} from '../../../../Entities/resource';
 
 @Injectable()
 export class ResourceServiceService {
 
   user : SocialUser;
+  resource:Resource;
 
   headers= {
     headers: new HttpHeaders({
@@ -47,6 +49,13 @@ export class ResourceServiceService {
   }
   public getUser(){
     return this.user;
+  }
+
+  public setResource(resource){
+    this.resource=resource;
+  }
+  public getResource(){
+    return this.resource;
   }
 
 

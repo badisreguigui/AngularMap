@@ -26,9 +26,9 @@ export class EventService {
     return titre;
   }
 
-  public getEvents() {
+  public getEvents(id) {
 
-    let data = this.http.get('http://localhost:18080/InfinityMAP-web/rest/VacationService/getVacation');
+    let data = this.http.get('http://localhost:18080/InfinityMAP-web/rest/VacationService/getVacationbyResource/'+id);
     return (data);
 
   }

@@ -1,0 +1,143 @@
+
+
+<div id="page-content" *ngIf="test===true">
+
+  <div class="row">
+    <div id="contentpdf" class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+
+      <div class="userWidget-1">
+        <div class="avatar bg-info">
+          <img src="assets/img/{{selectedResource.picture}}" width="50" height="50" />
+          <div class="name osLight">{{selectedResource.lastname}} {{selectedResource.firstname}} </div>
+        </div>
+        <div *ngIf="selectedResource.contractype==='freelancer'" class="title" style="margin-left:100px;">
+          Freelancer
+        </div>
+
+        <div *ngIf="selectedResource.contractype==='employee'" class="title" style="margin-left:100px;">
+          Levio's Employee
+        </div>
+
+        <div class="title" >
+
+          <img *ngFor='let in of counter(selectedResource.rating) ;let i = index' src="assets/img/star.png" width="20" height="20" />
+
+        </div>
+        <ul class="fullstats">
+
+        </ul>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-user"> </i> {{selectedResource.firstname}}'s Personal Informations</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td><i class="fa fa-external-link ph-5"></i></td>
+              <td> Sector </td>
+              <td> {{selectedResource.sector}}</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-location-arrow ph-5"></i></td>
+
+              <td> Region </td>
+              <td> {{selectedResource.region}}</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-envelope-o ph-5"></i></td>
+              <td> Profil </td>
+              <td>{{selectedResource.profil}} </td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-briefcase ph-5"></i></td>
+              <td> Seniority </td>
+              <td>{{selectedResource.seniority}} (years) </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-user"> </i> {{selectedResource.firstname}}'s Professional Informations</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td> Contract Type </td>
+              <td>{{selectedResource.contractype}}</td>
+
+            </tr>
+            <tr>
+              <td> Get PDF </td>
+              <td><button (click)="gotoIndex()">GoGOGOGO</button></td>
+
+
+            </tr>
+            <tr>
+              <td> Resource's List </td>
+              <td><button (click)="captureScreen()">FLASH</button></td>
+            </tr>
+
+            <tr>
+              <td> Status </td>
+
+              <td *ngIf="selectedResource.state==='Available'" ><span class="label label-sm label-info">{{selectedResource.state}}</span></td>
+
+              <td *ngIf="selectedResource.state==='notAvailable'"><span class="label label-sm label-danger">{{selectedResource.state}}</span></td>
+
+              <td *ngIf="selectedResource.state==='SoonAvailable'"> <span class="label label-sm label-dark">{{selectedResource.state}}</span></td>
+
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+      <div class="panel">
+        <div class="panel-body pad-no">
+          <!--Default Tabs (Left Aligned)-->
+          <!--===================================================-->
+          <div class="tab-base">
+            <ul class="nav nav-tabs">
+              <li class="active"> <a data-toggle="tab" href="#demo-lft-tab-1"> Calendar </a> </li>
+
+            </ul>
+            <div class="tab-content">
+
+              <!-- Timeline -->
+              <!--===================================================-->
+
+
+              <div *ngIf="calendarOptions">
+                <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+                                 (eventResize)="updateEvent($event.detail)" (dayClick)="dayClick($event.detail)" (clickButton)="clickButton($event.detail)" [(eventsModel)]="events"></ng-fullcalendar>
+              </div>
+
+              <!--===================================================-->
+              <!-- End Timeline -->
+
+
+            </div>
+          </div>
+          <!--===================================================-->
+          <!--End Default Tabs (Left Aligned)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="test===false">
+  <app-resourcecomponent></app-resourcecomponent>
+</div>

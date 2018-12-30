@@ -18,6 +18,7 @@ import {PushNotificationsService} from '../services/push-notifications.service';
 
 
 export class ResourcecomponentComponent implements OnInit {
+  test : boolean =false;
   user: SocialUser;
   public authorized: boolean = false;
   events = null;
@@ -62,12 +63,7 @@ export class ResourcecomponentComponent implements OnInit {
       events: []
     };
 
-    this.eventService.getEvents().subscribe(data => {
-      this.events = data;
-      console.log(data);
-      console.log(this.events);
 
-    });
   }
 
   onFileSelected(event) {
@@ -99,7 +95,10 @@ export class ResourcecomponentComponent implements OnInit {
   details(l,id) {
     this.selectedResource = l;
     this.selectedResource.id=id;
+    this.resourceService.setResource(this.selectedResource);
     console.log(this.selectedResource);
+    console.log(this.resourceService.getResource().firstname);
+    this.test= true;
   }
   update(l) {
     this.selectedResource = l;
@@ -243,6 +242,14 @@ export class ResourcecomponentComponent implements OnInit {
       'alertContent': 'This is Fifth Alert -- By Debasis Saha'
     });
     this._notificationService.generateNotification(data);
+  }
+
+  gotoindex() {
+    this.test= false;
+  }
+
+  counter(i: number) {
+    return new Array(i);
   }
 
 }

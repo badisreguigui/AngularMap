@@ -56,12 +56,12 @@ export class PushNotificationsService {
       };
     });
   }
-  generateNotification(source: Array < any > ): void {
+  generateNotification(source: Array < any >): void {
     let self = this;
     source.forEach((item) => {
       let options = {
         body: item.alertContent,
-        icon: "assets/img/aziza.jpg"
+        icon: item.icon,
       };
       let notify = self.create(item.title, options).subscribe();
     });
