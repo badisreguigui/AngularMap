@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import {FullCalendarModule} from 'ng-fullcalendar';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {RouteModuleRoutingModule} from './route-module/route-module-routing.module';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {ScModalModule} from 'angular-5-popup';
+
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -15,6 +16,7 @@ import {
 } from "angular5-social-login";
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 
 export function getAuthServiceConfigs() {
@@ -44,7 +46,10 @@ export function getAuthServiceConfigs() {
     StorageServiceModule,
     FullCalendarModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ScModalModule
+
   ],
   providers: [{
     provide: AuthServiceConfig,

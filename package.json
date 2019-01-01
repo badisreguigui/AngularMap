@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "angular-5-popup": "0.0.6",
     "angular-webstorage-service": "^1.0.2",
     "angular5-social-login": "^1.0.9",
     "core-js": "^2.4.1",
@@ -28,6 +29,8 @@
     "html2canvas": "^1.0.0-alpha.12",
     "jspdf": "^1.5.3",
     "ng-fullcalendar": "^1.7.1",
+    "ngx-smart-modal": "^7.1.0",
+    "pretty-checkbox": "^3.0.3",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

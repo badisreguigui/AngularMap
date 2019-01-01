@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
 
 
 <div id="page-content" *ngIf="test===true">
@@ -20,7 +21,7 @@
 
         <div class="title" >
 
-          <img *ngFor='let in of counter(selectedResource.rating) ;let i = index' src="assets/img/star.png" width="20" height="20" />
+          <img *ngFor='let in of counter(rate) ;let i = index' src="assets/img/star.png" width="20" height="20" />
 
         </div>
         <ul class="fullstats">
@@ -62,6 +63,49 @@
         </div>
       </div>
 
+      <div class="panel tagcloud-widget" *ngIf="testskilladd===false">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-user" ></i> {{selectedResource.firstname}}'s Skills </h3>
+        </div>
+        <div *ngFor="let skill of listskillResource"  class="panel-body">
+          <span class="label label-primary">{{skill.value}}</span>
+          <span (click)="deleteSkill(skill.value,skill)" class="fa fa-trash fa-lg"></span>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="skillDeleted">
+          <strong>No {{skillDeleted.value}} ! - {{skillDeleted.skillRate}} !</strong>
+        </div>
+        <div class="panel-footer"><button class="btn btn-default" (click)="addskillbutton()">Add Skills</button></div>
+
+      </div>
+
+      <div class="panel tagcloud-widget" *ngIf="testskilladd===true">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-user"> </i> {{selectedResource.firstname}}'s Skills : Add Skills </h3>
+        </div>
+        <div class="alert alert-info" role="alert" *ngIf="nameskill!=''">
+          <strong>Well done!</strong> {{nameskill}} added successfully.
+        </div>
+        <div *ngFor="let skill of listskill let i = index"  class="panel-body" >
+
+        <div class="pretty p-default" >
+          <input type="checkbox" (change)="addProp1($event,skill.value,skill.skillRate)" name="{{skill.value}}" [(ngModel)]="qtd[skill.id]" required>
+          <div class="state">
+            <label>{{skill.value}}</label>
+          </div>
+      </div>
+
+        </div>
+
+
+        <div class="panel-footer">
+          <span class="label label-sm label-info">Your Rating : {{rating}}</span>
+          <input type="submit" value="Back to Skills" (click)="valider()" class="btn btn-default"  />
+        </div>
+
+      </div>
+
+
+
       <div class="panel">
         <div class="panel-heading">
           <h3 class="panel-title"><i class="fa fa-user"> </i> {{selectedResource.firstname}}'s Professional Informations</h3>
@@ -75,14 +119,14 @@
 
             </tr>
             <tr>
-              <td> Get PDF </td>
-              <td><button (click)="gotoIndex()">GoGOGOGO</button></td>
+              <td> Get PDF   </td>
+              <td><span  (click)="captureScreen()"  class="fa fa-download fa-lg"></span></td>
 
 
             </tr>
             <tr>
               <td> Resource's List </td>
-              <td><button (click)="captureScreen()">FLASH</button></td>
+              <td><span  (click)="gotoIndex()"  class="fa fa-users fa-lg"></span></td>
             </tr>
 
             <tr>
@@ -127,6 +171,20 @@
               <!-- End Timeline -->
 
 
+              <div class="alert alert-success" role="alert" *ngIf="titre!='' && titre=='Sikness' && displayEvent.event.color!='red'">
+                <strong>{{titre}} ! Get Well Soon !</strong> From {{displayEvent.event.start}} to {{displayEvent.event.end}}
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="titre!='' && titre=='Holidays' && displayEvent.event.color!='red'">
+                <strong>{{titre}} ! Enjoy & Have Fun !</strong> From {{displayEvent.event.start}} to {{displayEvent.event.end}}
+              </div>
+              <div class="alert alert-danger" role="alert" *ngIf="titre!='' && displayEvent.event.color=='red'">
+                <strong>{{titre}} ! Waiting for Confirmation !</strong> From {{displayEvent.event.start}} to {{displayEvent.event.end}}
+              </div>
+              <div class="alert alert-info" role="alert" *ngIf="titre!='' && titre=='Maternity' && displayEvent.event.color!='red'">
+                <strong>{{titre}} ! Congratulations !</strong> From {{displayEvent.event.start}} to {{displayEvent.event.end}}
+              </div>
+
+
             </div>
           </div>
           <!--===================================================-->
@@ -138,6 +196,29 @@
 </div>
 
 
+
 <div *ngIf="test===false">
   <app-resourcecomponent></app-resourcecomponent>
 </div>
+
+
+
+<ngx-smart-modal #myModal identifier="myModal">
+  <div class="modal-header">
+
+    <h4 class="modal-title"><span id="eventTitle">{{displayEvent?.title}}</span></h4>
+  </div>
+
+  <div class="modal-body">
+    <p><b>start:</b> {{displayEvent?.start}}</p>
+    <p><b>end:</b> {{displayEvent?.end}}</p>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default btn-sm pull-right" >
+      <span class="glyphicon glyphicon-remove"></span> Remove
+    </button>
+  </div>
+
+</ngx-smart-modal>
+

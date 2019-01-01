@@ -18,6 +18,9 @@ import {PushNotificationsService} from '../services/push-notifications.service';
 
 
 export class ResourcecomponentComponent implements OnInit {
+  motachercher='';
+  testajout:boolean=false;
+  testupdate:boolean=false;
   test : boolean =false;
   user: SocialUser;
   public authorized: boolean = false;
@@ -66,6 +69,22 @@ export class ResourcecomponentComponent implements OnInit {
 
   }
 
+  ajoutForm(){
+    this.testajout=true;
+  }
+
+  updateForm(l,id){
+    this.testupdate=true;
+    this.selectedResource = l;
+    this.selectedResource.id=id;
+    this.resourceService.setResource(this.selectedResource);
+    console.log(this.selectedResource);
+    console.log(this.resourceService.getResource().firstname);
+    console.log(this.testupdate);
+    console.log(this.selectedResource);
+  }
+
+
   onFileSelected(event) {
     if(event.target.files.length > 0) {
       this.selectedimage=event.target.files[0].name;
@@ -74,22 +93,42 @@ export class ResourcecomponentComponent implements OnInit {
   }
 
   add(lastname,firstname,picture,seniority,sector,profil,contractype,region) {
-    this.resource.lastname=lastname;
+    this.resource=new Resource();
+    console.log(firstname);
+    console.log(lastname);
+    console.log(picture);
+    console.log(seniority);
+    console.log(sector);
+    console.log(profil);
+    console.log(contractype);
+    console.log(region);
     this.resource.firstname=firstname;
+    console.log(this.resource.firstname);
     this.resource.picture=picture;
     this.resource.seniority=seniority;
     this.resource.sector=sector;
     this.resource.profil=profil;
     this.resource.contractype=contractype;
     this.resource.region=region;
+    this.resource.lastname=lastname;
+
     this.resource.state='Available';
+    console.log(this.resource);
     this.resourceService.addResource(this.resource).subscribe(
       res=> {
         console.log(res);
         this.listResources.unshift(this.resource);
         this.resourceService.getAllResources().subscribe(data => { this.listResources = data; });
+        let data: Array < any >= [];
+        data.push({
+          'title': 'Resource Added',
+          'alertContent': 'Resource : '+this.resource.lastname+' '+this.resource.firstname+' added successfully',
+          'icon' : 'assets/img/'+this.resource.picture
+        });
+        this._notificationService.generateNotification(data);
       });
     console.log(this.resource);
+    this.testajout=false;
   }
 
   details(l,id) {
@@ -100,8 +139,11 @@ export class ResourcecomponentComponent implements OnInit {
     console.log(this.resourceService.getResource().firstname);
     this.test= true;
   }
-  update(l) {
+  update(l,picture) {
+    console.log(picture);
     this.selectedResource = l;
+    this.selectedResource.picture=this.selectedimage;
+    console.log(this.selectedResource.picture);
     this.resourceService.updateResource(this.selectedResource).subscribe(
       res=> {
         console.log(res);
@@ -112,9 +154,16 @@ export class ResourcecomponentComponent implements OnInit {
         }
         this.listResources.unshift(this.selectedResource);
         this.resourceService.getAllResources().subscribe(data => { this.listResources = data; });
-
+        let data: Array < any >= [];
+        data.push({
+          'title': 'Resource Updated',
+          'alertContent': 'Resource : '+this.selectedResource.lastname+' '+this.selectedResource.firstname+' updated successfully',
+          'icon' : 'assets/img/aziza.jpg'
+        });
+        this._notificationService.generateNotification(data);
       });
     console.log(this.resource);
+    this.testupdate=false;
   }
 
 
@@ -122,13 +171,22 @@ export class ResourcecomponentComponent implements OnInit {
     console.log(idResource);
     this.resourceService.deleteResource(idResource,resource).subscribe(c => {
       for(let i=0;i<this.listResources.length;i++) {
-        if(this.listResources[i].id===this.resource.id) {
+        if(this.listResources[i].id===resource.id) {
           this.listResources.splice(this.listResources.indexOf(resource),1);
         }
       }
       this.listResources.unshift(c);
       this.resourceService.getAllResources().subscribe(data => { this.listResources = data; });
+
+      let data: Array < any >= [];
+      data.push({
+        'title': 'Resource Deleted',
+        'alertContent': 'Resource : '+resource.lastname+' '+resource.firstname+' deleted successfully',
+        'icon' : 'assets/img/'+resource.picture
+      });
+      this._notificationService.generateNotification(data);
     });
+    this.resourceService.getAllResources().subscribe(data => { this.listResources = data; });
   }
 
 
@@ -167,7 +225,6 @@ export class ResourcecomponentComponent implements OnInit {
         });
     }
     console.log(this.selectedResource.id);
-
     console.log(this.skill);
     console.log(this.checkedphp);
     console.log(this.checkedhtml);
@@ -246,6 +303,8 @@ export class ResourcecomponentComponent implements OnInit {
 
   gotoindex() {
     this.test= false;
+    this.testajout=false;
+    this.testupdate=false;
   }
 
   counter(i: number) {

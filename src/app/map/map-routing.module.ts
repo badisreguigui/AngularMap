@@ -4,9 +4,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MandateModule } from './mandate/mandate.module';
 import {ResourceModuleModule} from './resources/resource-module/resource-module.module';
 
-const routes: Routes = [{path:'',component:DashboardComponent},
+const routes: Routes = [
 { path: 'mandate',  loadChildren: () => MandateModule,},
-  { path: 'resources',  loadChildren: () => ResourceModuleModule,}];
+  { path: 'resources',  loadChildren: () => ResourceModuleModule,}
+  ];
 
 
 @NgModule({
