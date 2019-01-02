@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import {NotFoundComponent} from './not-found/not-found.component';
 
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {HttpClientModule} from '@angular/common/http';
+import {SpeechModule} from 'ngx-speech';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -20,15 +22,23 @@ import {HttpClientModule} from '@angular/common/http';
     NotFoundComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
     RouteModuleRoutingModule,
     RouterModule,
     StorageServiceModule,
-    HttpClientModule
+    HttpClientModule,
+    SpeechModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: 'SPEECH_LANG', useValue: 'en-US' },],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

@@ -14,8 +14,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit()
   {
+if(this.storage.get('role')=='Client')
+{
+  console.log("HERE 1");
+  this.nomRecupere= this.storage.get('clientName');
+}
+else if(this.storage.get('role')=='Resource')
+{
+  console.log("HERE 2");
+  this.nomRecupere= this.storage.get('resourceName');
+}
 
-    this.nomRecupere=this.storage.get('currentuser');
   }
 
 

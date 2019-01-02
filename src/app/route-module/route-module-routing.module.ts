@@ -13,10 +13,12 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      {path: '', component: HomeComponent, pathMatch: 'full'},
+
       {path: 'home', component: HomeComponent}
     ]
   },
+
+
   { path: 'map',  loadChildren: () => MapModule,},
 
   {path: '**', component: NotFoundComponent},
