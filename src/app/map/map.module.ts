@@ -10,7 +10,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SpeechModule} from 'ngx-speech';
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import { MessageComponent } from './message/message.component';
-
+import {ScModalModule} from 'angular-5-popup';
+import { ResourcecomponentComponent } from './resources/resourcecomponent/resourcecomponent.component';
+import { DetailsResourceComponent } from './resources/details-resource/details-resource.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { MessageComponent } from './message/message.component';
     FormsModule,
     ReactiveFormsModule,
     SpeechModule,
+    ScModalModule,
     NgxSmartModalModule.forRoot(),
   ],
   providers: [{ provide: 'SPEECH_LANG', useValue: 'en-US' }, ],

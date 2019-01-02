@@ -4,18 +4,27 @@ import {LOCAL_STORAGE, WebStorageService, } from 'angular-webstorage-service';
 
 
 import {LoginService} from '../services/login.service';
-
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialUser
+} from 'angular5-social-login';
+import {ResourceServiceService} from '../map/resources/services/resource-service.service';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers : [LoginService]
+  providers : [LoginService,ResourceServiceService]
 })
 export class HomeComponent implements OnInit {
-
-  constructor( private ls: LoginService , private _router: Router, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
+  user: SocialUser;
+  public authorized: boolean = false;
+  mail='';
+  constructor( private ls: LoginService , private _router: Router, @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+               private socialAuthService: AuthService,private resourveService:ResourceServiceService) { }
 
   ngOnInit()
   {
@@ -46,6 +55,7 @@ dashbord(username,password)
         this.storage.set('role','Client');
         this.storage.set('clientName',data.client.nom);
         this.storage.set('idconnected',data.user_id);
+        this._router.navigate(['/map']);
       }
       else if (data.role=='Resource')
       {
@@ -57,10 +67,13 @@ dashbord(username,password)
         this.storage.set('login',username.value);
         this.storage.set('resourceName',data.resource.firstname);
         this.storage.set('idconnected',data.user_id);
+        this._router.navigate(['/map/resources/listResources']);
       }
 
       }
      )
-  this._router.navigate(['/map']);
+
 }
+
+
 }

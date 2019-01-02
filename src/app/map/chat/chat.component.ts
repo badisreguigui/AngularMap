@@ -74,7 +74,7 @@ export class ChatComponent implements OnDestroy, OnInit {
     console.log("APRES SUBSTRNG ===> "+hellWrld);
 
 
-    document.getElementById('discussion').innerHTML +='<img src="assets/dashboardPage/img/'+hellWrld+'">';
+      document.getElementById('discussion').innerHTML +='<img src="assets/dashboardPage/img/'+hellWrld+'">';
     this.cs.AddImage(hellWrld,this.storage.get('idconnected'),this.idDiscuss).subscribe(res => {
     }, err => {
       console.log("CHECK YOUR SERVICE");

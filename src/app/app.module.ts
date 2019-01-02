@@ -12,14 +12,39 @@ import {StorageServiceModule} from 'angular-webstorage-service';
 import {HttpClientModule} from '@angular/common/http';
 import {SpeechModule} from 'ngx-speech';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ScModalModule} from 'angular-5-popup';
+import {FullCalendarModule} from 'ng-fullcalendar';
+
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular5-social-login";
+import {MapModule} from './map/map.module';
 
 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("2147449098852278")
+      },
+    ],
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotFoundComponent,
+
+
+
+
 
 
 
@@ -33,11 +58,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SpeechModule,
     FormsModule,
     ReactiveFormsModule,
+    ScModalModule,
+    FullCalendarModule,
+    SocialLoginModule,
+
 
 
 
   ],
-  providers: [{ provide: 'SPEECH_LANG', useValue: 'en-US' },],
+  providers: [{ provide:AuthServiceConfig,
+              useFactory: getAuthServiceConfigs },],
   bootstrap: [AppComponent],
 
 })
